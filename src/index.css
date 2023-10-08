@@ -41,6 +41,7 @@ a{
 }
 
 .content-container {
+  width: 77%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

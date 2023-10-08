@@ -1,19 +1,19 @@
 .sidebar_container {
-  width: 25%;
+  width: 23%;
   height: 100vh;
   background-color: #FAFAFA;
 }
 
-.logo-block{
+.logo-block {
   margin: 40px 0 80px 55px;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.logo-block_img{
+.logo-block_img {
   margin-right: 20px;
 }
 
@@ -55,7 +55,7 @@
   background-color: #7ca2cb;
 }
 
-.dividing_line{
+.dividing_line {
   margin-bottom: 20px;
   width: 80%;
   height: 2px;

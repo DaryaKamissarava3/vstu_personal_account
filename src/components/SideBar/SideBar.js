@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import personIcon from './../../assets/images/vector.svg';
 import userIcon from './../../assets/images/buttonIcons/User.svg';
@@ -32,32 +32,32 @@ export const SideBar = () => {
             <span className="button_text">Расписание</span>
           </div>
         </Link>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/statistic" className="sidebar-button">
           <div className="button-content">
             <img src={statisticIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Статистика</span>
           </div>
         </Link>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/attendance" className="sidebar-button">
           <div className="button-content">
             <img src={attendanceIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Посещения занятий</span>
           </div>
         </Link>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/debts" className="sidebar-button">
           <div className="button-content">
             <img src={debtsIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Задолжности</span>
           </div>
         </Link>
         <div className="dividing_line"></div>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/manual" className="sidebar-button">
           <div className="button-content">
             <img src={userManualIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Руководство пользователя</span>
           </div>
         </Link>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/logout" className="sidebar-button">
           <div className="button-content">
             <img src={logoutIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Выйти из профиля</span>
