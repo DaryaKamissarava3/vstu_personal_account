@@ -1,24 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistReducer, persistStore } from 'redux-persist';
 import { combineReducers } from 'redux';
-import storage from 'redux-persist/lib/storage';
 
 import { scheduleReducer } from './scheduleSlice';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-};
+import { weekNumberReducer } from './weekNumberSlice';
+import { weekNameReducer } from './weekNameSlice';
 
 const rootReducer = combineReducers({
   schedule: scheduleReducer,
-  //other
+  weekNumber:weekNumberReducer,
+  weekName:weekNameReducer,
 });
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
 });
-
-export const persistor = persistStore(store);

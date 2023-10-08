@@ -1,27 +1,47 @@
-import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchStudentsSchedule=createAsyncThunk(
+export const fetchStudentsSchedule = createAsyncThunk(
   `schedule/fetchStudentsSchedule`,
-  async(group)=>{
-    const response=await axios.get(`http://192.168.11.252:8082/timetable/patterns/search?q=groupName==${group}`);
-    return response.data;
+  async (group, {rejectWithValue, dispatch, getState}) => {
+    try {
+      const response = await axios.get(`http://192.168.11.252:8082/timetable/patterns/search?q=groupName==${group}`);
+
+      if (response.status !== 200) {
+        throw new Error('Server error!')
+      }
+      const data = response.data;
+      dispatch(getStudentsSchedule(data));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
-export const fetchTeacherSchedule=createAsyncThunk(
+export const fetchTeacherSchedule = createAsyncThunk(
   `schedule/fetchTeacherSchedule`,
-  async(teacherFio)=>{
-    const response=await axios.get(`http://192.168.11.252:8082/timetable/patterns/search?q=teacherFio==${teacherFio}`);
-    return response.data;
+  async (teacherFio, {rejectWithValue, dispatch, getState}) => {
+    try {
+      const response = await axios.get(`http://192.168.11.252:8082/timetable/patterns/search?q=teacherFio==${teacherFio}`);
+
+      if (response.status !== 200) {
+        throw new Error('Server error!')
+      }
+      const data = response.data;
+      dispatch(getTeacherSchedule(data));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
 const initialState = {
   studentsScheduleData: [],
   teacherScheduleData: [],
-  weekName: null,
-  weekNumber: null,
+  studentsScheduleStatus: null,
+  teacherScheduleStatus: null,
+  studentsScheduleError: null,
+  teacherScheduleError: null,
 };
 
 const scheduleSlice = createSlice({
@@ -34,20 +54,36 @@ const scheduleSlice = createSlice({
     getTeacherSchedule(state, action) {
       state.teacherScheduleData = action.payload;
     },
-    getWeekNumber(state, action) {
-      state.weekNumber = action.payload;
-    },
-    getWeekName(state, action) {
-      state.weekName = action.payload;
-    },
-  }
+  },
+  extraReducers: (builder => {
+    builder
+      .addCase(fetchStudentsSchedule.pending, (state) => {
+        state.studentsScheduleStatus = 'loading';
+        state.studentsScheduleError = null;
+      })
+      .addCase(fetchStudentsSchedule.fulfilled, (state, action) => {
+        state.studentsScheduleStatus = 'resolved';
+        state.studentsScheduleData = action.payload;
+      })
+      .addCase(fetchStudentsSchedule.rejected, (state, action) => {
+        state.studentsScheduleStatus = 'rejected';
+        state.studentsScheduleError = action.payload;
+      })
+      .addCase(fetchTeacherSchedule.pending, (state) => {
+        state.teacherScheduleStatus = 'loading';
+        state.teacherScheduleError = null;
+      })
+      .addCase(fetchTeacherSchedule.fulfilled, (state, action) => {
+        state.teacherScheduleStatus = 'resolved';
+        state.teacherScheduleData = action.payload;
+      })
+      .addCase(fetchTeacherSchedule.rejected, (state, action) => {
+        state.teacherScheduleStatus = 'rejected';
+        state.teacherScheduleError = action.payload;
+      })
+  })
 })
 
-export const {
-  getStudentsSchedule,
-  getTeacherSchedule,
-  getWeekNumber,
-  getWeekName
-} = scheduleSlice.actions;
+const {getStudentsSchedule, getTeacherSchedule} = scheduleSlice.actions;
 
-export const scheduleReducer= scheduleSlice.reducer;
+export const scheduleReducer = scheduleSlice.reducer;

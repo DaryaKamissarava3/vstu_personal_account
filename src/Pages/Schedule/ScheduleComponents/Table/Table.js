@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { fetchTeacherSchedule } from '../../../../store/scheduleSlice';
 
 import {
   lessonAbbreviations,
@@ -12,7 +14,6 @@ import {
 
 import teacherImg from '../../../../assets/images/avatar.svg';
 import './style.css';
-import {fetchTeacherSchedule} from "../../../../store/scheduleSlice";
 
 export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSchedule}) => {
   const [filteredSchedule, setFilteredSchedule] = useState([]);

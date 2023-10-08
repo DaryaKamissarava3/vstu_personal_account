@@ -7,8 +7,7 @@ import { Table } from '../ScheduleComponents/Table';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
 
 import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
-import { getTeacherSchedule } from '../../../store/scheduleSlice';
-import { teacherScheduleArray } from '../../../arrFromDatabase';
+import { fetchTeacherSchedule } from '../../../store/scheduleSlice';
 
 import teacherImg from '../../../assets/images/avatar.svg';
 import './style.css';
@@ -28,8 +27,8 @@ export const TeacherSchedule = () => {
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
 
   useEffect(() => {
-    dispatch(getTeacherSchedule(teacherScheduleArray));
-  }, []);
+    dispatch(fetchTeacherSchedule('Карнилов Михаил Сергеевич'));
+  }, [dispatch]);
 
   return (
     <Layout>

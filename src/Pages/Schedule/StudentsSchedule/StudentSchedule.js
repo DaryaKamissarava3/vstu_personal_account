@@ -3,24 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';
+import { Spinner } from '../../../components/Spinner';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
-
-import {
-  studentsScheduleArray,
-  weekNameFromDatabase,
-  weekNumberFromDatabase
-} from '../../../arrFromDatabase';
+import { ErrorMessage } from '../../../components/ErrorMessage';
 
 import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
-import {fetchStudentsSchedule, getStudentsSchedule, getWeekName, getWeekNumber} from '../../../store/scheduleSlice';
+
+import { fetchWeekNumber } from '../../../store/weekNumberSlice';
+import { fetchWeekName } from '../../../store/weekNameSlice';
+import { fetchStudentsSchedule } from '../../../store/scheduleSlice';
 
 export const StudentSchedule = () => {
   const dispatch = useDispatch();
 
   const scheduleArray = useSelector((state) => state.schedule.studentsScheduleData);
+  const currentWeekNumber = useSelector((state) => state.weekNumber.weekNumber);
+  const currentWeekName = useSelector((state) => state.weekName.weekName);
+  const {studentsScheduleStatus, studentsScheduleError} = useSelector((state) => state.schedule);
 
-  const currentWeekNumber = useSelector((state) => state.schedule.weekNumber);
-  const currentWeekName = useSelector((state) => state.schedule.weekName);
   const [currentWeekDay, setCurrentWeekDay] = useState(getCurrentDayOfWeek());
 
   const [weekDay, setWeekDay] = useState(currentWeekDay);
@@ -29,25 +29,30 @@ export const StudentSchedule = () => {
 
   useEffect(() => {
     dispatch(fetchStudentsSchedule("Ит-11"));
-    dispatch(getStudentsSchedule(studentsScheduleArray));
-    dispatch(getWeekNumber(weekNumberFromDatabase));
-    dispatch(getWeekName(weekNameFromDatabase));
-  }, []);
+    dispatch(fetchWeekNumber());
+    dispatch(fetchWeekName());
+  }, [dispatch]);
 
   return (
     <Layout>
-      <ScheduleSelectors
-        updateWeekDay={setWeekDay}
-        updateWeekName={setWeekName}
-        updateWeekNumber={setWeekNumber}
-      />
-      <Table
-        weekDay={weekDay}
-        weekName={weekName}
-        weekNumber={weekNumber}
-        scheduleData={scheduleArray}
-        isTeacherSchedule={false}
-      />
+      {studentsScheduleStatus === 'loading' && <Spinner/>}
+      {studentsScheduleError && <ErrorMessage error={studentsScheduleError}/>}
+      {studentsScheduleStatus !== 'loading' && !studentsScheduleError && (
+        <>
+          <ScheduleSelectors
+            updateWeekDay={setWeekDay}
+            updateWeekName={setWeekName}
+            updateWeekNumber={setWeekNumber}
+          />
+          <Table
+            weekDay={weekDay}
+            weekName={weekName}
+            weekNumber={weekNumber}
+            scheduleData={scheduleArray}
+            isTeacherSchedule={false}
+          />
+        </>
+      )}
     </Layout>
   );
 };
