@@ -18,8 +18,8 @@ export const TeacherSchedule = () => {
 
   const scheduleArray = useSelector((state) => state.schedule.teacherScheduleData);
 
-  const currentWeekNumber = useSelector((state) => state.schedule.weekNumber);
-  const currentWeekName = useSelector((state) => state.schedule.weekName);
+  const currentWeekNumber = useSelector((state) => state.weekNumber.weekNumber);
+  const currentWeekName = useSelector((state) => state.weekName.weekName);
   const [currentWeekDay, setCurrentWeekDay] = useState(getCurrentDayOfWeek());
 
   const [weekDay, setWeekDay] = useState(currentWeekDay);

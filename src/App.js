@@ -1,13 +1,18 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Router from './routes/Router/Router';
+import { Profile } from './Pages/Profile';
+import { StudentSchedule } from "./Pages/Schedule/StudentsSchedule";
+import { TeacherSchedule } from "./Pages/Schedule/TeacherSchedule";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <Routes>
+      <Route path="*" element={<Navigate to="/" replace={true}/>}/>
+      <Route path="/" element={<Profile/>}/>
+      <Route path="/schedule" element={<StudentSchedule/>}/>
+      <Route path="/schedule/teacher/:id" element={<TeacherSchedule/>}/>
+    </Routes>
   );
 }
 

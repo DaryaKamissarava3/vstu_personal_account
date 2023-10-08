@@ -20,13 +20,13 @@ export const SideBar = () => {
         <p>Личный кабинет студента УО "ВГТУ"</p>
       </div>
       <div className="sidebar-buttons-block">
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/" className="sidebar-button">
           <div className="button-content">
             <img src={userIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Мой профиль</span>
           </div>
         </Link>
-        <Link to="/your/target/route" className="sidebar-button">
+        <Link to="/schedule" className="sidebar-button">
           <div className="button-content">
             <img src={calendarIcon} alt="Button icon" className="button_icon" />
             <span className="button_text">Расписание</span>
