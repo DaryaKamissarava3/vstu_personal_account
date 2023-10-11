@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
-import { fetchTeacherSchedule } from '../../../../store/scheduleSlice';
+import {fetchTeacherSchedule, getTeacherSchedule} from '../../../../store/scheduleSlice';
 
 import {
   lessonAbbreviations,
@@ -14,27 +14,35 @@ import {
 
 import teacherImg from '../../../../assets/images/avatar.svg';
 import './style.css';
+import {teacherScheduleArray} from "../../../../arrFromDatabase";
 
 export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSchedule}) => {
-  const [filteredSchedule, setFilteredSchedule] = useState([]);
-
   const dispatch = useDispatch();
 
+  const [filteredSchedule, setFilteredSchedule] = useState([]);
+
   useEffect(() => {
-    setFilteredSchedule(filterSchedule(weekDay, weekNumber, weekName, scheduleData));
+    if (scheduleData) {
+      setFilteredSchedule(filterSchedule(weekDay, weekNumber, weekName, scheduleData));
+    }
   }, [weekDay, weekName, weekNumber]);
 
 
   const filterSchedule = (day, week, name, scheduleArray) => {
     const translateDayFromSelect = matchDayOfWeek(day);
 
-    const filteredArray = scheduleArray.filter(item =>
-      item.lessonDay === translateDayFromSelect &&
-      (item.weekNumber === null || item.weekNumber === week) &&
-      (item.numerator === null ||
-        (name === "true" ? item.numerator === true : item.numerator === false)
-      )
-    );
+    const filteredArray = scheduleArray.filter(item => {
+      if (week === 'все') {
+        return (item.lessonDay === translateDayFromSelect);
+      } else {
+        return (
+          item.lessonDay === translateDayFromSelect &&
+          (item.weekNumber === null || item.weekNumber === week) &&
+          (item.numerator === null ||
+            (name === 'true' ? item.numerator === true : item.numerator === false))
+        );
+      }
+    });
 
     return filteredArray.slice().sort((a, b) => a.lessonNumber - b.lessonNumber);
   };
@@ -78,6 +86,12 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
 
     return `${lastName} ${firstName}.${fatherName}.`
   };
+
+  const handleTeacherScheduleNavigate = (teacherFio) => {
+    //dispatch(fetchTeacherSchedule("'"+teacherFio+"'"));
+    console.log(teacherFio);
+    dispatch(fetchTeacherSchedule(teacherFio));
+  }
 
   return (
     <>
@@ -125,7 +139,8 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
                   </td>
                   :
                   <td className="table-body_row_item teacher_cell">
-                    <Link to={`/schedule/teacher/${tableItem.teacherFio}`} className="teacher_link" onClick={()=>{dispatch(fetchTeacherSchedule("'"+tableItem.teacherFio+"'"))}}>
+                    <Link to={`/schedule/teacher/${tableItem.teacherFio}`} className="teacher_link"
+                          onClick={() => handleTeacherScheduleNavigate(tableItem.teacherFio)}>
                       <img className="teacher_cell_img" src={teacherImg} alt="Teacher image"/>
                       {shortenTeacherName(tableItem.teacherFio)}
                     </Link>

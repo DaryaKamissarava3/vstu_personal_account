@@ -1,5 +1,15 @@
+.go-back-btn{
+  text-decoration: none;
+}
+
+.button-content {
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+}
+
 .teacher-information-block{
-  margin-bottom: 50px ;
+  margin: 20px 0 50px 0;
   padding: 15px;
   display: flex;
   flex-direction: row;

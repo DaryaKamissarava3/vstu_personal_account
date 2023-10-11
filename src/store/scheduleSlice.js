@@ -59,31 +59,25 @@ const scheduleSlice = createSlice({
     builder
       .addCase(fetchStudentsSchedule.pending, (state) => {
         state.studentsScheduleStatus = 'loading';
-        state.studentsScheduleError = null;
       })
       .addCase(fetchStudentsSchedule.fulfilled, (state, action) => {
         state.studentsScheduleStatus = 'resolved';
-        state.studentsScheduleData = action.payload;
       })
       .addCase(fetchStudentsSchedule.rejected, (state, action) => {
         state.studentsScheduleStatus = 'rejected';
-        state.studentsScheduleError = action.payload;
       })
       .addCase(fetchTeacherSchedule.pending, (state) => {
         state.teacherScheduleStatus = 'loading';
-        state.teacherScheduleError = null;
       })
       .addCase(fetchTeacherSchedule.fulfilled, (state, action) => {
         state.teacherScheduleStatus = 'resolved';
-        state.teacherScheduleData = action.payload;
       })
       .addCase(fetchTeacherSchedule.rejected, (state, action) => {
         state.teacherScheduleStatus = 'rejected';
-        state.teacherScheduleError = action.payload;
       })
   })
 })
 
-const {getStudentsSchedule, getTeacherSchedule} = scheduleSlice.actions;
+export const {getStudentsSchedule, getTeacherSchedule} = scheduleSlice.actions;
 
 export const scheduleReducer = scheduleSlice.reducer;

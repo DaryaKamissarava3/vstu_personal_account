@@ -11,7 +11,7 @@ function App() {
       <Route path="*" element={<Navigate to="/" replace={true}/>}/>
       <Route path="/" element={<Profile/>}/>
       <Route path="/schedule" element={<StudentSchedule/>}/>
-      <Route path="/schedule/teacher/:id" element={<TeacherSchedule/>}/>
+      <Route path="/schedule/teacher/:teacherName" element={<TeacherSchedule/>}/>
     </Routes>
   );
 }

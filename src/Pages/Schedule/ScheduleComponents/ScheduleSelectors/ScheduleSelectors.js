@@ -20,8 +20,8 @@ const weekNumberOptions = [
   {value: 2, label: 2},
   {value: 3, label: 3},
   {value: 4, label: 4},
+  {value: 'все',label: 'все'}
 ];
-
 
 export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumber}) => {
   const currentWeekNumber = useSelector((state) => state.schedule.weekNumber);
@@ -35,11 +35,11 @@ export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumb
 
   useEffect(() => {
     if (currentWeekName === 'true') {
-      setIsCheckedNumerator(true);
-      setIsCheckedDenominator(false);
-    } else {
       setIsCheckedNumerator(false);
       setIsCheckedDenominator(true);
+    } else {
+      setIsCheckedNumerator(true);
+      setIsCheckedDenominator(false);
     }
   }, [currentWeekName]);
 
