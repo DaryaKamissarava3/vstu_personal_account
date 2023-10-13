@@ -11,8 +11,7 @@ import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
 
 import { fetchWeekNumber } from '../../../store/weekNumberSlice';
 import { fetchWeekName } from '../../../store/weekNameSlice';
-import {fetchStudentsSchedule, getStudentsSchedule} from '../../../store/scheduleSlice';
-import {studentsScheduleArray} from "../../../arrFromDatabase";
+import { fetchStudentsSchedule } from '../../../store/scheduleSlice';
 
 export const StudentSchedule = () => {
   const dispatch = useDispatch();
@@ -29,8 +28,7 @@ export const StudentSchedule = () => {
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
 
   useEffect(() => {
-    //dispatch(fetchStudentsSchedule("Ит-11"));
-    dispatch(getStudentsSchedule(studentsScheduleArray))
+    dispatch(fetchStudentsSchedule("Ит-10"));
     dispatch(fetchWeekNumber());
     dispatch(fetchWeekName());
   }, [dispatch]);

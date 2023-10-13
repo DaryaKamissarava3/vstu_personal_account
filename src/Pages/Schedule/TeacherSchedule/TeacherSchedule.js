@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import {Link, useParams} from 'react-router-dom';
+import React, {  useState } from 'react';
+import {  useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 
 import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';

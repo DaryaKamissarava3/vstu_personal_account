@@ -24,8 +24,8 @@ const weekNumberOptions = [
 ];
 
 export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumber}) => {
-  const currentWeekNumber = useSelector((state) => state.schedule.weekNumber);
-  const currentWeekName = useSelector((state) => state.schedule.weekName);
+  const currentWeekNumber = useSelector((state) => state.weekNumber.weekNumber);
+  const currentWeekName = useSelector((state) => state.weekName.weekName);
 
   const [currentWeekDay, setCurrentWeekDay] = useState(getCurrentDayOfWeek());
   const [selectedWeekNumber, setSelectedWeekNumber] = useState(currentWeekNumber);
@@ -34,12 +34,12 @@ export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumb
   const [isCheckedDenominator, setIsCheckedDenominator] = useState(false);
 
   useEffect(() => {
-    if (currentWeekName === 'true') {
-      setIsCheckedNumerator(false);
-      setIsCheckedDenominator(true);
-    } else {
+    if (currentWeekName === 'Числитель') {
       setIsCheckedNumerator(true);
       setIsCheckedDenominator(false);
+    } else {
+      setIsCheckedNumerator(false);
+      setIsCheckedDenominator(true);
     }
   }, [currentWeekName]);
 
@@ -56,13 +56,13 @@ export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumb
   const handleCheckboxNumerator = () => {
     setIsCheckedNumerator(true);
     setIsCheckedDenominator(false);
-    updateWeekName("true");
+    updateWeekName("Числитель");
   }
 
   const handleCheckboxDenominator = () => {
     setIsCheckedNumerator(false);
     setIsCheckedDenominator(true);
-    updateWeekName("false");
+    updateWeekName("Знаменатель");
   }
 
   return (

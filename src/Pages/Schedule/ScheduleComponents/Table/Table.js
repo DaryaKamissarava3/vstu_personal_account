@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-
-import {fetchTeacherSchedule, getTeacherSchedule} from '../../../../store/scheduleSlice';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchTeacherSchedule } from '../../../../store/scheduleSlice';
 
 import {
   lessonAbbreviations,
@@ -14,24 +13,23 @@ import {
 
 import teacherImg from '../../../../assets/images/avatar.svg';
 import './style.css';
-import {teacherScheduleArray} from "../../../../arrFromDatabase";
 
 export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSchedule}) => {
-  const dispatch = useDispatch();
 
   const [filteredSchedule, setFilteredSchedule] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (scheduleData) {
+    if (scheduleData && weekName && weekNumber) { //TODO without weekName and weekNumber
       setFilteredSchedule(filterSchedule(weekDay, weekNumber, weekName, scheduleData));
     }
-  }, [weekDay, weekName, weekNumber]);
+  }, [weekDay, weekName, weekNumber, scheduleData]);
 
 
   const filterSchedule = (day, week, name, scheduleArray) => {
     const translateDayFromSelect = matchDayOfWeek(day);
 
-    const filteredArray = scheduleArray.filter(item => {
+    return scheduleArray.filter(item => {
       if (week === 'все') {
         return (item.lessonDay === translateDayFromSelect);
       } else {
@@ -39,12 +37,10 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
           item.lessonDay === translateDayFromSelect &&
           (item.weekNumber === null || item.weekNumber === week) &&
           (item.numerator === null ||
-            (name === 'true' ? item.numerator === true : item.numerator === false))
+            (name === "Числитель" ? item.numerator === true : item.numerator === false))
         );
       }
-    });
-
-    return filteredArray.slice().sort((a, b) => a.lessonNumber - b.lessonNumber);
+    }).slice().sort((a, b) => a.lessonNumber - b.lessonNumber);
   };
 
   const generateClassName = (typeClassName) => {
@@ -88,9 +84,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
   };
 
   const handleTeacherScheduleNavigate = (teacherFio) => {
-    //dispatch(fetchTeacherSchedule("'"+teacherFio+"'"));
-    console.log(teacherFio);
-    dispatch(fetchTeacherSchedule(teacherFio));
+    dispatch(fetchTeacherSchedule("'" + teacherFio + "'"))
   }
 
   return (
@@ -139,8 +133,11 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
                   </td>
                   :
                   <td className="table-body_row_item teacher_cell">
-                    <Link to={`/schedule/teacher/${tableItem.teacherFio}`} className="teacher_link"
-                          onClick={() => handleTeacherScheduleNavigate(tableItem.teacherFio)}>
+                    <Link
+                      to={`/schedule/teacher/${tableItem.teacherFio}`}
+                      className="teacher_link"
+                      onClick={() => handleTeacherScheduleNavigate(tableItem.teacherFio)}
+                    >
                       <img className="teacher_cell_img" src={teacherImg} alt="Teacher image"/>
                       {shortenTeacherName(tableItem.teacherFio)}
                     </Link>
