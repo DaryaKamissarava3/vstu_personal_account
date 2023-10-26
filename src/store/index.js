@@ -1,16 +1,35 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import {configureStore} from '@reduxjs/toolkit';
+import {persistReducer, persistStore} from 'redux-persist';
+import {combineReducers} from 'redux';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
-import { scheduleReducer } from './scheduleSlice';
-import { weekNumberReducer } from './weekNumberSlice';
-import { weekNameReducer } from './weekNameSlice';
+import {authReducer} from './authSlice';
+import {scheduleReducer} from './scheduleSlice';
+import {weekNumberReducer} from './weekNumberSlice';
+import {weekNameReducer} from './weekNameSlice';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   schedule: scheduleReducer,
-  weekNumber:weekNumberReducer,
-  weekName:weekNameReducer,
+  weekNumber: weekNumberReducer,
+  weekName: weekNameReducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      thunk: true
+    }).concat(thunk),
 });
+
+export const persistor = persistStore(store);

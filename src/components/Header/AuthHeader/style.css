@@ -1,0 +1,8 @@
+.auth-header{
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  background-color: #434C63;
+}

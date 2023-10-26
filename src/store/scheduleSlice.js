@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchStudentsSchedule = createAsyncThunk(
@@ -13,7 +13,7 @@ export const fetchStudentsSchedule = createAsyncThunk(
       const data = response.data;
       dispatch(getStudentsSchedule(data));
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error);
     }
   }
 );
@@ -60,19 +60,19 @@ const scheduleSlice = createSlice({
       .addCase(fetchStudentsSchedule.pending, (state) => {
         state.studentsScheduleStatus = 'loading';
       })
-      .addCase(fetchStudentsSchedule.fulfilled, (state, action) => {
+      .addCase(fetchStudentsSchedule.fulfilled, (state) => {
         state.studentsScheduleStatus = 'resolved';
       })
-      .addCase(fetchStudentsSchedule.rejected, (state, action) => {
+      .addCase(fetchStudentsSchedule.rejected, (state) => {
         state.studentsScheduleStatus = 'rejected';
       })
       .addCase(fetchTeacherSchedule.pending, (state) => {
         state.teacherScheduleStatus = 'loading';
       })
-      .addCase(fetchTeacherSchedule.fulfilled, (state, action) => {
+      .addCase(fetchTeacherSchedule.fulfilled, (state) => {
         state.teacherScheduleStatus = 'resolved';
       })
-      .addCase(fetchTeacherSchedule.rejected, (state, action) => {
+      .addCase(fetchTeacherSchedule.rejected, (state) => {
         state.teacherScheduleStatus = 'rejected';
       })
   })

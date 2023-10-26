@@ -37,7 +37,7 @@ const weekNameSlice = createSlice({
       .addCase(fetchWeekName.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchWeekName.fulfilled, (state, action) => {
+      .addCase(fetchWeekName.fulfilled, (state) => {
         state.status = 'resolved';
       })
       .addCase(fetchWeekName.rejected, (state, action) => {
