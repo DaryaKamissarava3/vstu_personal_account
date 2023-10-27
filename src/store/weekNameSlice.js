@@ -6,6 +6,7 @@ export const fetchWeekName = createAsyncThunk(
   async (_, {rejectWithValue, dispatch}) => {
     try {
       const response = await axios.get('http://192.168.11.252:8082/timetable/content/nameOfWeek');
+
       if (response.status !== 200) {
         throw new Error('Server error!');
       }
@@ -36,16 +37,19 @@ const weekNameSlice = createSlice({
     builder
       .addCase(fetchWeekName.pending, (state) => {
         state.status = 'loading';
+        state.error = null;
       })
-      .addCase(fetchWeekName.fulfilled, (state) => {
+      .addCase(fetchWeekName.fulfilled, (state, action) => {
         state.status = 'resolved';
+        // state.weekName = action.payload;
       })
       .addCase(fetchWeekName.rejected, (state, action) => {
         state.status = 'rejected';
+        // state.error = action.payload;
       })
   }
 });
 
-const {getWeekName} = weekNameSlice.actions;
+const { getWeekName } = weekNameSlice.actions;
 
 export const weekNameReducer = weekNameSlice.reducer;

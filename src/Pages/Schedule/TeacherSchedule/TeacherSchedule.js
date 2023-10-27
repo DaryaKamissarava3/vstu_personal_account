@@ -1,19 +1,20 @@
-import React, {  useState } from 'react';
-import {  useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
 
 import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
+import { fetchTeacherSchedule } from '../../../store/scheduleSlice';
 
 import teacherImg from '../../../assets/images/avatar.svg';
-import backBtn from '../../../assets/images/goback-btn.svg';
 import './style.css';
 
 export const TeacherSchedule = () => {
   const {teacherName} = useParams();
+  const dispatch = useDispatch();
 
   const scheduleArray = useSelector((state) => state.schedule.teacherScheduleData);
 
@@ -25,14 +26,12 @@ export const TeacherSchedule = () => {
   const [weekName, setWeekName] = useState(currentWeekName);
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
 
+  useEffect(() => {
+    dispatch(fetchTeacherSchedule('Карнилов Михаил Сергеевич'));
+  }, [dispatch]);
+
   return (
     <Layout>
-      <Link to="/schedule" className="go-back-btn">
-        <div className="btn-content">
-          <img src={backBtn} alt="Button icon" className="btn-icon" />
-          <span className="button_text">Обратно</span>
-        </div>
-      </Link>
       <div className="teacher-information-block">
         <img className="teacher-block-img" src={teacherImg} alt="Teacher img"/>
         <div>

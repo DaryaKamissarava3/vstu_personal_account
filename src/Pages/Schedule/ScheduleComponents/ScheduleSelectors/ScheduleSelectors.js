@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { CustomSelect } from '../../../../components/CustomSelect';
 
 import { getCurrentDayOfWeek } from '../../../../assets/utils/functions';
+
 import './style.css';
 
 const dayOptions = [
@@ -20,7 +21,7 @@ const weekNumberOptions = [
   {value: 2, label: 2},
   {value: 3, label: 3},
   {value: 4, label: 4},
-  {value: 'все',label: 'все'}
+  {value:'все',label:'все'}
 ];
 
 export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumber}) => {
@@ -34,7 +35,7 @@ export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumb
   const [isCheckedDenominator, setIsCheckedDenominator] = useState(false);
 
   useEffect(() => {
-    if (currentWeekName === 'Числитель') {
+    if (currentWeekName === true) {
       setIsCheckedNumerator(true);
       setIsCheckedDenominator(false);
     } else {
@@ -56,13 +57,13 @@ export const ScheduleSelectors = ({updateWeekDay, updateWeekName, updateWeekNumb
   const handleCheckboxNumerator = () => {
     setIsCheckedNumerator(true);
     setIsCheckedDenominator(false);
-    updateWeekName("Числитель");
+    updateWeekName(true);
   }
 
   const handleCheckboxDenominator = () => {
     setIsCheckedNumerator(false);
     setIsCheckedDenominator(true);
-    updateWeekName("Знаменатель");
+    updateWeekName(false);
   }
 
   return (

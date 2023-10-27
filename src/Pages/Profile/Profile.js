@@ -11,11 +11,9 @@ import achievement2 from '../../assets/images/profileIcons/achievement2.svg';
 import achievement3 from '../../assets/images/profileIcons/achievement3.svg';
 
 import './style.css';
-import {useSelector} from "react-redux";
 
 export const Profile = () => {
   //TODO const userName=useSelector((state)=>state.auth.userInfo.name) ????
-
   return (
     <Layout>
       <div className="profile-block">

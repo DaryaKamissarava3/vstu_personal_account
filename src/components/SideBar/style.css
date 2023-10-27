@@ -37,18 +37,10 @@
   border-radius: 12px;
 }
 
-.btn-content {
-  width: 150px;
-  height: 35px;
+.button-content {
+  margin-left: 25px;
   display: flex;
   align-items: center;
-  color: #FAFAFA;
-  background-color: #434C63;
-  border-radius: 12px;
-}
-
-.btn-icon{
-  margin: 0 15px;
 }
 
 .button_icon {

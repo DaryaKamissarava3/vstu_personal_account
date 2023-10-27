@@ -1,24 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-const backendURL = 'http://127.0.0.1:5000';
+const backendURL = 'https://ebook.vstu.by/authorization';
 
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 
 export const userLogin = createAsyncThunk(
   'auth/userLogin',
-  async ({login, password}, {rejectWithValue}) => {
+  async ({username, password}, {rejectWithValue}) => {
     try {
       const config = {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-type': "application/x-www-form-urlencoded",
+          'Authorization':
+            "Basic RElQTE9NQUZPUk1TOkRJUExPTUFGT1JNUw==",
         },
       };
 
       const {data} = await axios.post(
-        `${backendURL}/api/user/login`,
-        {login, password},
+        `${backendURL}/token?grant_type=password`,
+        {username, password},
         config
       );
 

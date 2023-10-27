@@ -1,13 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {persistReducer, persistStore} from 'redux-persist';
-import {combineReducers} from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
-import {authReducer} from './authSlice';
-import {scheduleReducer} from './scheduleSlice';
-import {weekNumberReducer} from './weekNumberSlice';
-import {weekNameReducer} from './weekNameSlice';
+import { scheduleReducer } from './scheduleSlice';
+import { weekNumberReducer } from './weekNumberSlice';
+import { weekNameReducer } from './weekNameSlice';
+import { authReducer } from './authSlice';
 
 const persistConfig = {
   key: 'root',

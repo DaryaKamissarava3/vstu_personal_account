@@ -6,6 +6,7 @@ export const fetchWeekNumber = createAsyncThunk(
   async (_, {rejectWithValue, dispatch, getState}) => {
     try {
       const response = await axios.get('http://192.168.11.252:8082/timetable/content/numberOfWeek');
+
       if (response.status !== 200) {
         throw new Error('Server error!');
       }
@@ -36,6 +37,7 @@ const weekNumberSlice = createSlice({
     builder
       .addCase(fetchWeekNumber.pending, (state) => {
         state.status = 'loading';
+        state.error = null;
       })
       .addCase(fetchWeekNumber.fulfilled, (state, action) => {
         state.status = 'resolved';

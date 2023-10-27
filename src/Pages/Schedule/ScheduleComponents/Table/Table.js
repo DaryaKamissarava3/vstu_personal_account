@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchTeacherSchedule } from '../../../../store/scheduleSlice';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {fetchTeacherSchedule} from '../../../../store/scheduleSlice';
 
 import {
   lessonAbbreviations,
@@ -20,7 +20,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (scheduleData && weekName && weekNumber) { //TODO without weekName and weekNumber
+    if (scheduleData) {
       setFilteredSchedule(filterSchedule(weekDay, weekNumber, weekName, scheduleData));
     }
   }, [weekDay, weekName, weekNumber, scheduleData]);
@@ -28,8 +28,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
 
   const filterSchedule = (day, week, name, scheduleArray) => {
     const translateDayFromSelect = matchDayOfWeek(day);
-
-    return scheduleArray.filter(item => {
+    const filteredArray = scheduleArray.filter(item => {
       if (week === 'все') {
         return (item.lessonDay === translateDayFromSelect);
       } else {
@@ -37,10 +36,11 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
           item.lessonDay === translateDayFromSelect &&
           (item.weekNumber === null || item.weekNumber === week) &&
           (item.numerator === null ||
-            (name === "Числитель" ? item.numerator === true : item.numerator === false))
+            (name === true ? item.numerator === true : item.numerator === false))
         );
       }
     }).slice().sort((a, b) => a.lessonNumber - b.lessonNumber);
+    return filteredArray;
   };
 
   const generateClassName = (typeClassName) => {
@@ -85,6 +85,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
 
   const handleTeacherScheduleNavigate = (teacherFio) => {
     dispatch(fetchTeacherSchedule("'" + teacherFio + "'"))
+    // dispatch(fetchTeacherSchedule(teacherFio))
   }
 
   return (

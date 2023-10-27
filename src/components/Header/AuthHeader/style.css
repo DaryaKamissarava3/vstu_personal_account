@@ -1,8 +1,15 @@
-.auth-header{
-  height: 90px;
+.auth-header {
+  height: 12vh;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #FFFFFF;
   background-color: #434C63;
+}
+
+@media screen  and (max-width: 480px) {
+  .auth-header_title{
+    font-size: 20px;
+    display: flex;
+  }
 }

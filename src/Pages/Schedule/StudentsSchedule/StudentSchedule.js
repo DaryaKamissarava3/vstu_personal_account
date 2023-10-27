@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';
-
+import { Spinner } from '../../../components/Spinner';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
 import { ErrorMessage } from '../../../components/ErrorMessage';
 
@@ -12,7 +12,6 @@ import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
 import { fetchWeekNumber } from '../../../store/weekNumberSlice';
 import { fetchWeekName } from '../../../store/weekNameSlice';
 import { fetchStudentsSchedule } from '../../../store/scheduleSlice';
-import {Spinner} from "../../../components/Spinner";
 
 export const StudentSchedule = () => {
   const dispatch = useDispatch();
@@ -21,13 +20,12 @@ export const StudentSchedule = () => {
   const currentWeekNumber = useSelector((state) => state.weekNumber.weekNumber);
   const currentWeekName = useSelector((state) => state.weekName.weekName);
   const {studentsScheduleStatus, studentsScheduleError} = useSelector((state) => state.schedule);
-
+  
   const [currentWeekDay, setCurrentWeekDay] = useState(getCurrentDayOfWeek());
 
   const [weekDay, setWeekDay] = useState(currentWeekDay);
   const [weekName, setWeekName] = useState(currentWeekName);
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
-
   useEffect(() => {
     dispatch(fetchStudentsSchedule("Ит-10"));
     dispatch(fetchWeekNumber());
@@ -52,8 +50,7 @@ export const StudentSchedule = () => {
             scheduleData={scheduleArray}
             isTeacherSchedule={false}
           />
-        </>
-      )}
+        </>)}
     </Layout>
   );
 };

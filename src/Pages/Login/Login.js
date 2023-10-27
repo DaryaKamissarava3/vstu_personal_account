@@ -27,7 +27,7 @@ export const Login = () => {
 
   const onSubmit = (data) => {
     //TODO auth actions
-    console.log(data);
+    console.log(data.login);
 
     dispatch(userLogin(data))
   }
@@ -44,7 +44,7 @@ export const Login = () => {
             <input
               className="login-input"
               placeholder="Ваш логин"
-              {...register("login")}
+              {...register("username")}
               required
             />
             <input
