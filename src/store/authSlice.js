@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const backendURL = 'https://ebook.vstu.by/authorization';
@@ -7,7 +7,7 @@ const userToken = localStorage.getItem('userToken') ? localStorage.getItem('user
 
 export const userLogin = createAsyncThunk(
   'auth/userLogin',
-  async ({username, password}, {rejectWithValue}) => {
+  async ({username, password}, {rejectWithValue, dispatch}) => {
     try {
       const config = {
         headers: {
@@ -23,7 +23,7 @@ export const userLogin = createAsyncThunk(
         config
       );
 
-      localStorage.setItem('userToken', data.userToken);
+      localStorage.setItem('userToken', data.access_token);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -38,7 +38,7 @@ export const userLogin = createAsyncThunk(
 const initialState = {
   loading: false,
   userInfo: {},
-  userToken: null,
+  userToken:null,
   error: null,
   success: false,
 };
@@ -47,17 +47,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginUser(state, action) {
-      console.log(action.payload)
-      state.userInfo = action.payload;
-      state.userToken = action.payload.userToken;
-    },
     logoutUser(state) {
       localStorage.removeItem('userToken');
       state.userInfo = null;
       state.userToken = null;
       state.error = null;
       state.loading = false;
+      state.success = false;
     }
   },
   extraReducers: (builder => {
@@ -66,14 +62,19 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(userLogin.fulfilled, (state) => {
+      .addCase(userLogin.fulfilled, (state,action) => {
         state.loading = false;
+        state.success= true;
+        state.userInfo = action.payload;
+        state.userToken = action.payload.access_token;
       })
-      .addCase(userLogin.rejected, (state, {payload}) => {
+      .addCase(userLogin.rejected, (state, action) => {
         state.loading = false;
-        state.error = payload;
+        state.error = action.payload;
       })
   })
 });
+
+export const {loginUser, logoutUser} = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

@@ -1,37 +1,31 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { AuthLayout } from '../../Layouts/AuthLayout';
-import { ErrorMessage } from '../../components/ErrorMessage';
 import { Spinner } from '../../components/Spinner';
 
 import { userLogin } from '../../store/authSlice';
 
 import './style.css';
+import {ErrorModal} from "../../components/ErrorMessage/ErrorModal";
 
 export const Login = () => {
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit,reset} = useForm();
 
   const {loading, userInfo, error} = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate('/')//nav authenticated user to main page
-  //   }
-  // }, [navigate, userInfo]);
 
   const onSubmit = (data) => {
-    //TODO auth actions
-    console.log(data.login);
-
-    dispatch(userLogin(data))
+    dispatch(userLogin(data));
+    reset();
+    navigate('/')
   }
-  console.log(error)
+
   return (
     <AuthLayout>
       <div className="login-container">
@@ -40,7 +34,6 @@ export const Login = () => {
             Вход в личный кабинет
           </h3>
           <form onSubmit={handleSubmit(onSubmit)} className="login-form">
-            {/*{error && <ErrorMessage error={error}/> }*/}
             <input
               className="login-input"
               placeholder="Ваш логин"
@@ -59,6 +52,7 @@ export const Login = () => {
             </button>
           </form>
         </div>
+        {error && <ErrorModal error="Неверный логин или пароль,попробуйте заново"/> }
       </div>
     </AuthLayout>
   );

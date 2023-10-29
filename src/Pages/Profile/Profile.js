@@ -11,17 +11,17 @@ import achievement2 from '../../assets/images/profileIcons/achievement2.svg';
 import achievement3 from '../../assets/images/profileIcons/achievement3.svg';
 
 import './style.css';
+import {useSelector} from "react-redux";
 
 export const Profile = () => {
-  //TODO const userName=useSelector((state)=>state.auth.userInfo.name) ????
+  const userName=useSelector((state)=>state.auth.userInfo.fio)
   return (
     <Layout>
       <div className="profile-block">
         <div className="person-information">
           <img className="person-photo" src={personPhoto} alt="Person photo"/>
           <p className="person-name">
-            {/*TODO take name from userInfo*/}
-            Абазовская Наталья Николаевна
+            {userName}
           </p>
           <Link to="/edit-profile" className="sidebar-button">
             <div className="button-content">
@@ -45,7 +45,7 @@ export const Profile = () => {
         <div className="profile-block-item">
           <div className="block-greeting">
             <div>
-              <h2>Здраствуйте, Наталья!</h2>
+              <h2>Здраствуйте, {userName}!</h2>
               <p>Сегодня - Понедельник, 28 августа 2022</p>
             </div>
             <div>

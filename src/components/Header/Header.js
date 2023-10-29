@@ -5,8 +5,11 @@ import eyeIcon from './../../assets/images/headerIcons/Eye.svg';
 import bellIcon from './../../assets/images/headerIcons/Bell.svg';
 import avatarIcon from './../../assets/images/headerIcons/img-human.svg';
 import './style.css';
+import {useSelector} from "react-redux";
 
 export const Header = () => {
+  const userName=useSelector((state)=>state.auth.userInfo.fio)
+
   return (
     <header className="header">
       <div className="header-search-input">
@@ -18,7 +21,7 @@ export const Header = () => {
         <img className="header-icon" src={bellIcon} alt="icon"/>
         <img className="header-profile_img" src={avatarIcon} alt="Avatar icon"/>
         <div className="header-block-profile">
-          <p>Абазовская Н.К.</p>
+          <p>{userName}</p>
           <p>abazovskaya@mail.ru</p>
         </div>
       </div>

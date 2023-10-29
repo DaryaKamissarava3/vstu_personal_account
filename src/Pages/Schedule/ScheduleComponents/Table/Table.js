@@ -13,6 +13,7 @@ import {
 
 import teacherImg from '../../../../assets/images/avatar.svg';
 import './style.css';
+import {shortenName} from '../../../../assets/utils/functions';
 
 export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSchedule}) => {
 
@@ -74,15 +75,6 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
     return splitName.map((word) => word.charAt(0).toUpperCase()).join("");
   }
 
-  const shortenTeacherName = (fullName) => {
-    const splitName = fullName.split(' ');
-    const lastName = splitName[0];
-    const firstName = splitName[1].charAt(0);
-    const fatherName = splitName[2].charAt(0);
-
-    return `${lastName} ${firstName}.${fatherName}.`
-  };
-
   const handleTeacherScheduleNavigate = (teacherFio) => {
     dispatch(fetchTeacherSchedule("'" + teacherFio + "'"))
     // dispatch(fetchTeacherSchedule(teacherFio))
@@ -140,7 +132,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
                       onClick={() => handleTeacherScheduleNavigate(tableItem.teacherFio)}
                     >
                       <img className="teacher_cell_img" src={teacherImg} alt="Teacher image"/>
-                      {shortenTeacherName(tableItem.teacherFio)}
+                      {shortenName(tableItem.teacherFio)}
                     </Link>
                   </td>
                 }
@@ -181,7 +173,7 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
                     :
                     <Link to={`/schedule/teacher/${item.teacherFio}`} className="block_teacher_information">
                       <img className="teacher_cell_img mobile" src={teacherImg} alt="Teacher image"/>
-                      <p className="block_teacher_name">{shortenTeacherName(item.teacherFio)}</p>
+                      <p className="block_teacher_name">{shortenName(item.teacherFio)}</p>
                     </Link>
                   }
                 </div>
