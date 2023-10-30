@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 import personIcon from './../../assets/images/vector.svg';
 import userIcon from './../../assets/images/buttonIcons/User.svg';
@@ -12,14 +12,19 @@ import logoutIcon from './../../assets/images/buttonIcons/Logout.svg';
 
 import './style.css';
 import {useDispatch} from "react-redux";
+import {useAuth} from "../../hook/auth";
 import {logoutUser} from "../../store/authSlice";
 
 
 export const SideBar = () => {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
+  const auth = useAuth();
 
   const handleLogout = () => {
-    dispatch(logoutUser())
+    dispatch(logoutUser());
+    auth.logout();
+    navigate("/login")
   };
 
   return (

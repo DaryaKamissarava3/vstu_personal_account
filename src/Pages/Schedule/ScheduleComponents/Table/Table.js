@@ -77,7 +77,6 @@ export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSch
 
   const handleTeacherScheduleNavigate = (teacherFio) => {
     dispatch(fetchTeacherSchedule("'" + teacherFio + "'"))
-    // dispatch(fetchTeacherSchedule(teacherFio))
   }
 
   return (
