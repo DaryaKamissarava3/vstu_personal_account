@@ -48,6 +48,6 @@ const weekNumberSlice = createSlice({
   }
 });
 
-const {getWeekNumber} = weekNumberSlice.actions;
+const { getWeekNumber } = weekNumberSlice.actions;
 
 export const weekNumberReducer = weekNumberSlice.reducer;

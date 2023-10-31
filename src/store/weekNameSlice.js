@@ -41,11 +41,9 @@ const weekNameSlice = createSlice({
       })
       .addCase(fetchWeekName.fulfilled, (state, action) => {
         state.status = 'resolved';
-        // state.weekName = action.payload;
       })
       .addCase(fetchWeekName.rejected, (state, action) => {
         state.status = 'rejected';
-        // state.error = action.payload;
       })
   }
 });

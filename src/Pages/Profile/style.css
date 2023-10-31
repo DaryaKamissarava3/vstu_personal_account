@@ -16,8 +16,9 @@
 }
 
 .person-photo {
-  margin-top: -12%;
+  margin-top: -10%;
   margin-bottom: 20px;
+  width: 90%;
 }
 
 .person-name {
@@ -65,4 +66,17 @@
 
 .show-all-btn {
   color: #B7B7B7;
+}
+
+@media screen  and (max-width: 1000px) {
+
+  .block-greeting {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block-greeting_item{
+    margin-bottom: 30px;
+  }
 }

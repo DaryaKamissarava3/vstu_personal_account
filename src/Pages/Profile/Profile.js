@@ -12,6 +12,7 @@ import achievement3 from '../../assets/images/profileIcons/achievement3.svg';
 
 import './style.css';
 import {useSelector} from "react-redux";
+import searchIcon from "../../assets/images/headerIcons/searchIcon.svg";
 
 export const Profile = () => {
   const userName=useSelector((state)=>state.auth.userInfo.fio)
@@ -44,11 +45,11 @@ export const Profile = () => {
         </div>
         <div className="profile-block-item">
           <div className="block-greeting">
-            <div>
+            <div className="block-greeting_item">
               <h2>Здраствуйте, {userName}!</h2>
               <p>Сегодня - Понедельник, 28 августа 2022</p>
             </div>
-            <div>
+            <div className="block-greeting_item">
               <img className="achievement-icon" src={achievement1} alt="Achievement icon"/>
               <img className="achievement-icon" src={achievement2} alt="Achievement icon"/>
               <img className="achievement-icon" src={achievement3} alt="Achievement icon"/>

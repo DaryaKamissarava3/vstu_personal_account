@@ -1,5 +1,9 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../../hook/auth';
+import { logoutUser } from '../../store/authSlice';
+import { persistor } from '../../store';
 
 import personIcon from './../../assets/images/vector.svg';
 import userIcon from './../../assets/images/buttonIcons/User.svg';
@@ -11,10 +15,6 @@ import userManualIcon from './../../assets/images/buttonIcons/InfoSquare.svg';
 import logoutIcon from './../../assets/images/buttonIcons/Logout.svg';
 
 import './style.css';
-import {useDispatch} from "react-redux";
-import {useAuth} from "../../hook/auth";
-import {logoutUser} from "../../store/authSlice";
-
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -23,8 +23,10 @@ export const SideBar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    persistor.purge();
     auth.logout();
-    navigate("/login")
+    navigate("/login");
+    localStorage.clear();
   };
 
   return (

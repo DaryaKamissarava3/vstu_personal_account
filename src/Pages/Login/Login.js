@@ -1,38 +1,37 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useForm} from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../../hook/auth';
 
-import {AuthLayout} from '../../Layouts/AuthLayout';
-import {Spinner} from '../../components/Spinner';
+import { AuthLayout } from '../../Layouts/AuthLayout';
+import { Spinner } from '../../components/Spinner';
+import { ErrorModal } from '../../components/ErrorMessage/ErrorModal';
 
-import {userLogin} from '../../store/authSlice';
-
+import { userLogin } from '../../store/authSlice';
 import './style.css';
-import {ErrorModal} from "../../components/ErrorMessage/ErrorModal";
-import {useAuth} from "../../hook/auth";
-
 
 export const Login = () => {
   const {register, handleSubmit, reset} = useForm();
 
   const {loading, userInfo, error} = useSelector((state) => state.auth);
+  const successAuth = useSelector((state) => state.auth.success === true)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location=useLocation();
   const auth = useAuth();
 
-  const redirectPath=location.state?.path || '/';
+  useEffect(()=>{
+    if(userInfo){
+      auth.login(userInfo)
+      navigate("/", {replace: true});
+    }
+  },[navigate,userInfo]);
 
-  const onSubmit = (data) => {
+  const onSubmit =  (data) => {
     dispatch(userLogin(data));
     reset();
-    if (userInfo) {
-      auth.login(data);
-      navigate(redirectPath, {replace: true})
-    }
-  }
+  };
 
   return (
     <AuthLayout>
@@ -60,7 +59,7 @@ export const Login = () => {
             </button>
           </form>
         </div>
-        {error && <ErrorModal error="Неверный логин или пароль,попробуйте заново"/>}
+        {error && <ErrorModal error="Неверный логин или пароль"/>}
       </div>
     </AuthLayout>
   );

@@ -16,7 +16,7 @@
   width: 298px;
   height: 36px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #d32a2a;
   border-radius: 5px;
   outline: none;
 }
@@ -46,4 +46,43 @@
 
 .header-profile_img{
   margin-right: 5%;
+}
+
+.header-title{
+  display: none;
+}
+
+.menu-btn{
+  display: none;
+}
+
+@media screen  and (max-width: 1000px) {
+  .search_input {
+    display: none;
+  }
+
+  .search-input_icon{
+    display: none;
+  }
+  .header-title{
+    display: flex;
+  }
+
+  .menu-btn{
+    display: block;
+    border: none;
+    background-color: #FFFFFF;
+  }
+
+  .menu-btn:hover{
+    cursor: pointer;
+  }
+}
+
+@media screen  and (max-width: 786px) {
+
+}
+
+@media screen  and (max-width: 480px) {
+
 }
