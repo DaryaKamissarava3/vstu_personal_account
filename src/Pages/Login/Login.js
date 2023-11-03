@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../hook/auth';
 
 import { AuthLayout } from '../../Layouts/AuthLayout';
 import { Spinner } from '../../components/Spinner';
@@ -15,15 +14,12 @@ export const Login = () => {
   const {register, handleSubmit, reset} = useForm();
 
   const {loading, userInfo, error} = useSelector((state) => state.auth);
-  const successAuth = useSelector((state) => state.auth.success === true)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const auth = useAuth();
 
   useEffect(()=>{
     if(userInfo){
-      auth.login(userInfo)
       navigate("/", {replace: true});
     }
   },[navigate,userInfo]);

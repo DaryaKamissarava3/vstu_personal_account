@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useAuth } from '../../hook/auth';
 import { logoutUser } from '../../store/authSlice';
 import { persistor } from '../../store';
 
@@ -23,14 +22,11 @@ export const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const auth = useAuth();
 
   const handleLogout = () => {
     dispatch(logoutUser());
     persistor.purge();
-    auth.logout();
     navigate("/login");
-    localStorage.clear();
   };
 
   return (

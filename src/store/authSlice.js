@@ -1,9 +1,7 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const backendURL = 'https://ebook.vstu.by/authorization';
-
-const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 
 export const userLogin = createAsyncThunk(
   'auth/userLogin',
@@ -23,7 +21,6 @@ export const userLogin = createAsyncThunk(
         config
       );
 
-      localStorage.setItem('userToken', data.access_token);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
