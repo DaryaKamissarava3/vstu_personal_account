@@ -9,9 +9,10 @@ import './style.css';
 import {useSelector} from "react-redux";
 import {shortenName} from "../../assets/utils/functions";
 import personIcon from "../../assets/images/vector.svg";
+import {Search} from "../Search";
 
 export const Header = () => {
-  const userName=useSelector((state)=>state.auth.userInfo.fio)
+  const userName = useSelector((state) => state.auth.userInfo.fio)
 
   return (
     <header className="header">
@@ -19,10 +20,11 @@ export const Header = () => {
         <img className="header_img" src={personIcon} alt="Person icon"/>
         <p>Личный кабинет студента УО "ВГТУ"</p>
       </div>
-      <div className="header-search-input">
-        <input className="search_input" type="text" placeholder="Поиск по сайту..."/>
-        <img className="search-input_icon" src={searchIcon} alt="loop icon"/>
-      </div>
+      <Search
+        blockClass="header-search-block"
+        inputClass="header-search_input"
+        iconClass="header-search_icon"
+      />
       <div className="header-block">
         <img className="header-icon" src={eyeIcon} alt="icon"/>
         <img className="header-icon" src={bellIcon} alt="icon"/>
@@ -32,7 +34,7 @@ export const Header = () => {
           <p>abazovskaya@mail.ru</p>
         </div>
         <button className="menu-btn">
-          <img  src={open} alt="Open btn"/>
+          <img src={open} alt="Open btn"/>
         </button>
       </div>
     </header>

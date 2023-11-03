@@ -24,37 +24,6 @@
   align-items: center;
 }
 
-.sidebar-button {
-  margin-bottom: 20px;
-  width: 80%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  background-color: #434C63;
-  border: none;
-  text-decoration: none;
-  border-radius: 12px;
-}
-
-.button-content {
-  margin-left: 25px;
-  display: flex;
-  align-items: center;
-}
-
-.button_icon {
-  margin-right: 20px;
-}
-
-.button-text {
-  font-size: 18px;
-}
-
-.sidebar-button:hover {
-  background-color: #7ca2cb;
-}
-
 .dividing_line {
   margin-bottom: 20px;
   width: 80%;
@@ -62,7 +31,7 @@
   background-color: #F0F0F0;
 }
 
-@media screen  and (max-width: 1000px) {
+@media screen  and (max-width: 1050px) {
   .sidebar_container {
     display: none;
   }

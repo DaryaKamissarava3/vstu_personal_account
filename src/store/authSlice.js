@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const backendURL = 'https://ebook.vstu.by/authorization';
@@ -40,6 +40,7 @@ const initialState = {
   userInfo: null,
   userToken: null,
   error: null,
+  roles: null,
 };
 
 const authSlice = createSlice({
@@ -52,6 +53,7 @@ const authSlice = createSlice({
       state.userToken = null;
       state.error = null;
       state.loading = false;
+      state.roles = null;
     }
   },
   extraReducers: (builder => {
@@ -65,6 +67,7 @@ const authSlice = createSlice({
         state.userInfo = action.payload
         state.userToken = action.payload.access_token;
         state.error = null;
+        state.roles=action.payload.roles;
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false;

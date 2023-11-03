@@ -26,6 +26,7 @@ export const StudentSchedule = () => {
   const [weekDay, setWeekDay] = useState(currentWeekDay);
   const [weekName, setWeekName] = useState(currentWeekName);
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
+
   useEffect(() => {
     dispatch(fetchStudentsSchedule("Ит-10"));
     dispatch(fetchWeekNumber());
