@@ -48,8 +48,13 @@ a{
 }
 
 .content {
-  padding: 50px;
-  height: 80vh;
+  padding: 4em 2em;
+}
+
+@media screen  and (max-width: 1050px) {
+  .content{
+    background-color: #FAFAFA;
+  }
 }
 
 @media screen  and (max-width: 480px) {

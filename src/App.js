@@ -5,6 +5,7 @@ import { ClassAttendance } from './Pages/ClassAttendance';
 import { ClassDebts } from './Pages/ClassDebts';
 import { Login } from './Pages/Login';
 import { Profile } from './Pages/Profile';
+import { UserManual } from './Pages/UserManual';
 import { Statistic } from './Pages/Statistic';
 import { StudentSchedule } from './Pages/Schedule/StudentsSchedule';
 import { TeacherProfile } from './Pages/TeacherProfile';
@@ -12,7 +13,6 @@ import { TeacherSchedule } from './Pages/Schedule/TeacherSchedule';
 
 import { AuthProvider } from './hook/auth';
 import { RequireAuth } from './hook/RequireAuth';
-import {UserManual} from "./Pages/UserManual";
 
 function App() {
   return (

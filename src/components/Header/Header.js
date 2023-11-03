@@ -1,25 +1,25 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import searchIcon from './../../assets/images/headerIcons/searchIcon.svg';
+import { Search } from '../Search';
+import { HeaderTitle } from './HeaderTitle';
+
 import eyeIcon from './../../assets/images/headerIcons/Eye.svg';
 import bellIcon from './../../assets/images/headerIcons/Bell.svg';
 import avatarIcon from './../../assets/images/headerIcons/img-human.svg';
 import open from './../../assets/images/headerIcons/open.svg';
 import './style.css';
-import {useSelector} from "react-redux";
-import {shortenName} from "../../assets/utils/functions";
-import personIcon from "../../assets/images/vector.svg";
-import {Search} from "../Search";
 
 export const Header = () => {
   const userName = useSelector((state) => state.auth.userInfo.fio)
 
   return (
     <header className="header">
-      <div className="header-title">
-        <img className="header_img" src={personIcon} alt="Person icon"/>
-        <p>Личный кабинет студента УО "ВГТУ"</p>
-      </div>
+      <HeaderTitle
+        blockName="header-block-title"
+        logoImg="header-logo"
+        titleText="header-text"
+      />
       <Search
         blockClass="header-search-block"
         inputClass="header-search_input"

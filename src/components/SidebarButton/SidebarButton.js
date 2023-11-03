@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-const SidebarButton = ({to, icon, text, isActive}) => {
+export const SidebarButton = ({to, icon, text, isActive}) => {
   return (
     <Link to={to} className={`sidebar-button ${isActive ? 'active' : ''}`}>
       <div className="button-content">
@@ -13,5 +13,3 @@ const SidebarButton = ({to, icon, text, isActive}) => {
     </Link>
   );
 };
-
-export default SidebarButton;

@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import {Layout} from '../../Layouts/Layout';
+import { Layout } from '../../Layouts/Layout';
+import { Search } from '../../components/Search';
 
 import personPhoto from './../../assets/images/personPhoto.svg';
 import penIcon from '../../assets/images/profileIcons/penIcon.svg';
@@ -11,8 +13,6 @@ import achievement2 from '../../assets/images/profileIcons/achievement2.svg';
 import achievement3 from '../../assets/images/profileIcons/achievement3.svg';
 
 import './style.css';
-import {useSelector} from "react-redux";
-import {Search} from '../../components/Search';
 
 export const Profile = () => {
   const userName = useSelector((state) => state.auth.userInfo.fio);
