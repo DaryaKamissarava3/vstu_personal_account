@@ -49,6 +49,7 @@ a{
 
 .content {
   padding: 4em 2em;
+  height: 80vh;
 }
 
 @media screen  and (max-width: 1050px) {

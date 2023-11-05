@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';
 import { Spinner } from '../../../components/Spinner';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
@@ -34,7 +33,7 @@ export const StudentSchedule = () => {
   }, [dispatch]);
 
   return (
-    <Layout>
+    <>
       {studentsScheduleStatus === 'loading' && <Spinner type="points" text="Идёт загрузка"/>}
       {studentsScheduleError && <ErrorMessage error={studentsScheduleError}/>}
       {studentsScheduleStatus !== 'loading' && !studentsScheduleError && (
@@ -52,6 +51,6 @@ export const StudentSchedule = () => {
             isTeacherSchedule={false}
           />
         </>)}
-    </Layout>
+    </>
   );
 };

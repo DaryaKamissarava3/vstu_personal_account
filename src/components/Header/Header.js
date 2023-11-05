@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector } from 'react-redux';
 
 import { Search } from '../Search';
@@ -12,6 +12,10 @@ import './style.css';
 
 export const Header = () => {
   const userName = useSelector((state) => state.auth.userInfo.fio)
+
+  useEffect(()=>{
+
+  })
 
   return (
     <header className="header">

@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Layout } from '../../Layouts/Layout';
 import { Search } from '../../components/Search';
 
 import personPhoto from './../../assets/images/personPhoto.svg';
@@ -18,7 +17,7 @@ export const Profile = () => {
   const userName = useSelector((state) => state.auth.userInfo.fio);
 
   return (
-    <Layout>
+    <>
       <div className="profile-block">
         <Search
           blockClass="profile-search-block"
@@ -85,6 +84,6 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };

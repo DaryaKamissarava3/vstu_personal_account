@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { Layout } from '../../../Layouts/Layout';
 import { Table } from '../ScheduleComponents/Table';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
 
@@ -31,7 +30,7 @@ export const TeacherSchedule = () => {
   }, [dispatch]);
 
   return (
-    <Layout>
+    <>
       <div className="teacher-information-block">
         <img className="teacher-block-img" src={teacherImg} alt="Teacher img"/>
         <div>
@@ -50,6 +49,6 @@ export const TeacherSchedule = () => {
         scheduleData={scheduleArray}
         isTeacherSchedule={true}
       />
-    </Layout>
+    </>
   );
 };

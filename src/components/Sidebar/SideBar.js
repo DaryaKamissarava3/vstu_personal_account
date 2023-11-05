@@ -17,7 +17,7 @@ import logoutIcon from './../../assets/images/buttonIcons/Logout.svg';
 
 import './style.css';
 
-export const SideBar = () => {
+export const SideBar = ({userRole}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,25 +32,42 @@ export const SideBar = () => {
   return (
     <section className="sidebar_container">
       <HeaderTitle blockName="sidebar-block-title" logoImg="sidebar-logo"/>
-      <div className="sidebar-buttons-block">
-        <SidebarButton to="/" icon={userIcon} text="Мой профиль" isActive={location.pathname === '/'}/>
-        <SidebarButton to="/schedule" icon={calendarIcon} text="Расписание"
-                       isActive={location.pathname === '/schedule'}/>
-        <SidebarButton to="/statistic" icon={statisticIcon} text="Статистика"
-                       isActive={location.pathname === '/statistic'}/>
-        <SidebarButton to="/attendance" icon={attendanceIcon} text="Посещения занятий"
-                       isActive={location.pathname === '/attendance'}/>
-        <SidebarButton to="/debts" icon={debtsIcon} text="Задолжности" isActive={location.pathname === '/debts'}/>
-        <div className="dividing_line"></div>
-        <SidebarButton to="/manual" icon={userManualIcon} text="Руководство пользователя"
-                       isActive={location.pathname === '/manual'}/>
-        <button onClick={handleLogout} className="sidebar-button">
-          <div className="button-content">
-            <img src={logoutIcon} alt="Button icon" className="button_icon"/>
-            <span className="button_text">Выйти из профиля</span>
-          </div>
-        </button>
-      </div>
+      {userRole === 0 ?
+        <div className="sidebar-buttons-block">
+          <SidebarButton to="/" icon={userIcon} text="Мой профиль" isActive={location.pathname === '/'}/>
+          <SidebarButton to="/schedule" icon={calendarIcon} text="Расписание"
+                         isActive={location.pathname === '/schedule'}/>
+          <SidebarButton to="/statistic" icon={statisticIcon} text="Статистика"
+                         isActive={location.pathname === '/statistic'}/>
+          <SidebarButton to="/attendance" icon={attendanceIcon} text="Посещения занятий"
+                         isActive={location.pathname === '/attendance'}/>
+          <SidebarButton to="/debts" icon={debtsIcon} text="Задолжности" isActive={location.pathname === '/debts'}/>
+          <div className="dividing_line"></div>
+          <SidebarButton to="/manual" icon={userManualIcon} text="Руководство пользователя"
+                         isActive={location.pathname === '/manual'}/>
+          <button onClick={handleLogout} className="sidebar-button">
+            <div className="button-content">
+              <img src={logoutIcon} alt="Button icon" className="button_icon"/>
+              <span className="button_text">Выйти из профиля</span>
+            </div>
+          </button>
+        </div>
+        :
+        <div className="sidebar-buttons-block">
+          <SidebarButton to="/" icon={userIcon} text="Мой профиль" isActive={location.pathname === '/'}/>
+          <SidebarButton to="/schedule" icon={calendarIcon} text="Расписание"
+                         isActive={location.pathname === '/schedule'}/>
+          <div className="dividing_line"></div>
+          <SidebarButton to="/manual" icon={userManualIcon} text="Руководство пользователя"
+                         isActive={location.pathname === '/manual'}/>
+          <button onClick={handleLogout} className="sidebar-button">
+            <div className="button-content">
+              <img src={logoutIcon} alt="Button icon" className="button_icon"/>
+              <span className="button_text">Выйти из профиля</span>
+            </div>
+          </button>
+        </div>
+      }
     </section>
   );
 };
