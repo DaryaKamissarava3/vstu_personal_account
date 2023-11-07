@@ -9,7 +9,7 @@ export const Layout = ({children , role}) => {
     <div className="container">
       <SideBar userRole={role}/>
       <div className="content-container">
-        <Header/>
+        <Header userRole={role}/>
         <main className="content">
           {children}
           <Outlet />

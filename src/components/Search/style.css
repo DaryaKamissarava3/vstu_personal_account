@@ -7,7 +7,7 @@
   width: 298px;
   height: 36px;
   font-size: 16px;
-  border: 1px solid #d32a2a;
+  border: 1px solid #cbcbcb;
   border-radius: 5px;
   outline: none;
 }
@@ -54,4 +54,17 @@
     left: 3%;
     z-index: 17;
   }
+}
+
+@media screen  and (max-width: 480px) {
+  .profile-search-block {
+    margin: 0 20px 70px 20px;
+  }
+
+  .profile-search_input{
+    padding-left: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
 }

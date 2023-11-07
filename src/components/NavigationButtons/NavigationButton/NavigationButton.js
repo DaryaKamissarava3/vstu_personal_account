@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-export const SidebarButton = ({to, icon, text, isActive}) => {
+export const NavigationButton = ({to, icon, text, isActive}) => {
   return (
     <Link to={to} className={`sidebar-button ${isActive ? 'active' : ''}`}>
       <div className="button-content">

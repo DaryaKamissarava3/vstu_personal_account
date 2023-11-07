@@ -1,21 +1,17 @@
 import React, {useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
-import { Search } from '../Search';
-import { HeaderTitle } from './HeaderTitle';
+import {Search} from '../Search';
+import {HeaderTitle} from './HeaderTitle';
+import {MenuButton} from '../MenuButton';
 
 import eyeIcon from './../../assets/images/headerIcons/Eye.svg';
 import bellIcon from './../../assets/images/headerIcons/Bell.svg';
 import avatarIcon from './../../assets/images/headerIcons/img-human.svg';
-import open from './../../assets/images/headerIcons/open.svg';
 import './style.css';
 
-export const Header = () => {
+export const Header = ({userRole}) => {
   const userName = useSelector((state) => state.auth.userInfo.fio)
-
-  useEffect(()=>{
-
-  })
 
   return (
     <header className="header">
@@ -32,14 +28,14 @@ export const Header = () => {
       <div className="header-block">
         <img className="header-icon" src={eyeIcon} alt="icon"/>
         <img className="header-icon" src={bellIcon} alt="icon"/>
-        <img className="header-profile_img" src={avatarIcon} alt="Avatar icon"/>
-        <div className="header-block-profile">
-          <p>{userName}</p>
-          <p>abazovskaya@mail.ru</p>
+        <div className="header-block_userInfo">
+          <img className="header-user_img" src={avatarIcon} alt="Avatar icon"/>
+          <div className="header-user_info">
+            <p>User U.U</p>
+            <p className="header-email">abazovskaya@mail.ru</p>
+          </div>
         </div>
-        <button className="menu-btn">
-          <img src={open} alt="Open btn"/>
-        </button>
+        <MenuButton userRole={userRole}/>
       </div>
     </header>
   );

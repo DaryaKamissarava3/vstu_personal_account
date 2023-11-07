@@ -8,7 +8,7 @@ export const AuthLayout = ({children}) => {
     <div className="container">
       <div className="content-container">
         <AuthHeader />
-        <main className="content">
+        <main className="main-block" >
           {children}
         </main>
         <Footer />

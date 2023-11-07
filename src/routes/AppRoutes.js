@@ -24,7 +24,7 @@ export const AppRoutes = ({isAuthenticated, roles}) => {
         setUserRoleNumber(1);
       }
     }
-  }, [isAuthenticated, roles])
+  }, [isAuthenticated, roles]);
 
   return (
     <Routes>

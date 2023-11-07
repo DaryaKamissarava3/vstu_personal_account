@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import { Search } from '../../components/Search';
+import {Search} from '../../components/Search';
 
 import personPhoto from './../../assets/images/personPhoto.svg';
 import penIcon from '../../assets/images/profileIcons/penIcon.svg';
@@ -26,33 +26,38 @@ export const Profile = () => {
         />
         <div className="profile-block_container">
           <div className="person-information">
-            <img className="person-photo" src={personPhoto} alt="Person photo"/>
-            <p className="person-name">
-              {userName}
-            </p>
-            <Link to="/edit-profile" className="sidebar-button">
-              <div className="button-content">
-                <img src={penIcon} alt="Button icon" className="button_icon"/>
-                <span className="button_text">Редактировать профиль</span>
-              </div>
-            </Link>
-            <Link to="/edit-profile" className="sidebar-button">
-              <div className="button-content">
-                <img src={lockout} alt="Button icon" className="button_icon"/>
-                <span className="button_text">Пункт меню</span>
-              </div>
-            </Link>
-            <Link to="/edit-profile" className="sidebar-button">
-              <div className="button-content">
-                <img src={lockout} alt="Button icon" className="button_icon"/>
-                <span className="button_text">Пункт меню</span>
-              </div>
-            </Link>
+            <div className="person-inf_block">
+              <img className="person-photo" src={personPhoto} alt="Person photo"/>
+            </div>
+            <div className="person-inf_block">
+              <p className="person-name">
+                {userName}
+              </p>
+              <Link to="/edit-profile" className="sidebar-button">
+                <div className="button-content">
+                  <img src={penIcon} alt="Button icon" className="button_icon"/>
+                  <span className="button_text">Редактировать профиль</span>
+                </div>
+              </Link>
+              <Link to="/edit-profile" className="sidebar-button">
+                <div className="button-content">
+                  <img src={lockout} alt="Button icon" className="button_icon"/>
+                  <span className="button_text">Пункт меню</span>
+                </div>
+              </Link>
+              <Link to="/edit-profile" className="sidebar-button">
+                <div className="button-content">
+                  <img src={lockout} alt="Button icon" className="button_icon"/>
+                  <span className="button_text">Пункт меню</span>
+                </div>
+              </Link>
+            </div>
+
           </div>
           <div className="profile-block-item">
             <div className="block-greeting">
               <div className="block-greeting_item">
-                <h2>Здраствуйте, {userName}!</h2>
+                <h2>Здраствуйте, USERNAME!</h2>
                 <p>Сегодня - Понедельник, 28 августа 2022</p>
               </div>
               <div className="block-greeting_item">
