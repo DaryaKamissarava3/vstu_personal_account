@@ -11,7 +11,7 @@ export const userLogin = createAsyncThunk(
         headers: {
           'Content-type': "application/x-www-form-urlencoded",
           'Authorization':
-            "Basic RElQTE9NQUZPUk1TOkRJUExPTUFGT1JNUw==",
+            "Basic VlNUVV9TVFVERU5UX0NMSUVOVDpWU1RVX1NUVURFTlRfQ0xJRU5U",
         },
       };
 
