@@ -1,6 +1,6 @@
 import React from 'react';
-import {AppRoutes} from "./routes/AppRoutes";
-import {useSelector} from "react-redux";
+import { AppRoutes } from './routes/AppRoutes';
+import { useSelector } from 'react-redux';
 
 function App() {
   const auth = useSelector((state) => state.auth);

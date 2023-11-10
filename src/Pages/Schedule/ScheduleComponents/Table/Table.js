@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {fetchTeacherSchedule} from '../../../../store/scheduleSlice';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchTeacherSchedule } from '../../../../store/scheduleSlice';
 
 import {
   lessonAbbreviations,
@@ -10,10 +10,10 @@ import {
   tableHeaderForStudents,
   tableHeaderForTeacher
 } from '../../../../assets/utils/arrays';
+import { shortenName } from '../../../../assets/utils/functions';
 
 import teacherImg from '../../../../assets/images/avatar.svg';
 import './style.css';
-import {shortenName} from '../../../../assets/utils/functions';
 
 export const Table = ({weekDay, weekName, weekNumber, scheduleData, isTeacherSchedule}) => {
 

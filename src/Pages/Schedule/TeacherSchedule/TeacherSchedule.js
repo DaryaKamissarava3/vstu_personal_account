@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { Table } from '../ScheduleComponents/Table';
 import { ScheduleSelectors } from '../ScheduleComponents/ScheduleSelectors';
 
 import { getCurrentDayOfWeek } from '../../../assets/utils/functions';
-import { fetchTeacherSchedule } from '../../../store/scheduleSlice';
 
 import teacherImg from '../../../assets/images/avatar.svg';
 import './style.css';
 
 export const TeacherSchedule = () => {
   const {teacherName} = useParams();
-  const dispatch = useDispatch();
 
   const scheduleArray = useSelector((state) => state.schedule.teacherScheduleData);
 
@@ -24,10 +22,6 @@ export const TeacherSchedule = () => {
   const [weekDay, setWeekDay] = useState(currentWeekDay);
   const [weekName, setWeekName] = useState(currentWeekName);
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
-
-  useEffect(() => {
-    dispatch(fetchTeacherSchedule('Карнилов Михаил Сергеевич'));
-  }, [dispatch]);
 
   return (
     <>

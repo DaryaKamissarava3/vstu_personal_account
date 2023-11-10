@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+
+import { StudentNavButtons } from '../NavigationButtons/StudentNavButtons';
+import { TeacherNavButtons } from '../NavigationButtons/TeacherNavButtons';
 
 import open from '../../assets/images/headerIcons/open.svg';
 import './style.css';
-import {StudentNavButtons} from "../NavigationButtons/StudentNavButtons";
-import {TeacherNavButtons} from "../NavigationButtons/TeacherNavButtons";
 
 export const MenuButton = ({userRole}) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);

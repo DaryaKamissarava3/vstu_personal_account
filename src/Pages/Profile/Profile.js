@@ -1,8 +1,9 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link} from 'react-router-dom';
 
-import {Search} from '../../components/Search';
+import { Search } from '../../components/Search';
+import { getStudentInfo } from '../../store/studentSlice';
 
 import personPhoto from './../../assets/images/personPhoto.svg';
 import penIcon from '../../assets/images/profileIcons/penIcon.svg';
@@ -15,6 +16,14 @@ import './style.css';
 
 export const Profile = () => {
   const userName = useSelector((state) => state.auth.userInfo.fio);
+  const userToken=useSelector((state)=>state.auth.userToken);
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    console.log(userToken)
+     dispatch(getStudentInfo(userToken))
+  },[userToken])
 
   return (
     <>

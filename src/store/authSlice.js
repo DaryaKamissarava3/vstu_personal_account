@@ -11,7 +11,7 @@ export const userLogin = createAsyncThunk(
         headers: {
           'Content-type': "application/x-www-form-urlencoded",
           'Authorization':
-            "Basic VlNUVV9TVFVERU5UX0NMSUVOVDpWU1RVX1NUVURFTlRfQ0xJRU5U",
+          "Basic VlNUVV9TVFVERU5UX0NMSUVOVDpWU1RVX1NUVURFTlRfQ0xJRU5U",
         },
       };
 
@@ -30,7 +30,7 @@ export const userLogin = createAsyncThunk(
       }
     }
   }
-)
+);
 
 const initialState = {
   loading: false,

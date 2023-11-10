@@ -5,7 +5,7 @@ export const fetchWeekNumber = createAsyncThunk(
   'weekNumber/fetchWeekNumber',
   async (_, {rejectWithValue, dispatch, getState}) => {
     try {
-      const response = await axios.get('http://192.168.11.252:8082/timetable/content/numberOfWeek');
+      const response = await axios.get('https://student.vstu.by/timetable/content/numberOfWeek');
 
       if (response.status !== 200) {
         throw new Error('Server error!');

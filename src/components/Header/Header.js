@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import {Search} from '../Search';
-import {HeaderTitle} from './HeaderTitle';
-import {MenuButton} from '../MenuButton';
+import { Search } from '../Search';
+import { HeaderTitle } from './HeaderTitle';
+import { MenuButton } from '../MenuButton';
 
 import eyeIcon from './../../assets/images/headerIcons/Eye.svg';
 import bellIcon from './../../assets/images/headerIcons/Bell.svg';

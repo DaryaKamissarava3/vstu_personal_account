@@ -1,16 +1,21 @@
 import React from 'react';
-import {NavigationButton} from "../NavigationButton";
-import userIcon from "../../../assets/images/buttonIcons/User.svg";
-import calendarIcon from "../../../assets/images/buttonIcons/Calendar.svg";
-import statisticIcon from "../../../assets/images/buttonIcons/Chart.svg";
-import attendanceIcon from "../../../assets/images/buttonIcons/Component.svg";
-import debtsIcon from "../../../assets/images/buttonIcons/Receipt.svg";
-import userManualIcon from "../../../assets/images/buttonIcons/InfoSquare.svg";
-import logoutIcon from "../../../assets/images/buttonIcons/Logout.svg";
-import {logoutUser} from "../../../store/authSlice";
-import {persistor} from "../../../store";
-import {useDispatch} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { NavigationButton } from '../NavigationButton';
+
+import userIcon from '../../../assets/images/buttonIcons/User.svg';
+import calendarIcon from '../../../assets/images/buttonIcons/Calendar.svg';
+import statisticIcon from '../../../assets/images/buttonIcons/Chart.svg';
+import attendanceIcon from '../../../assets/images/buttonIcons/Component.svg';
+import debtsIcon from '../../../assets/images/buttonIcons/Receipt.svg';
+import userManualIcon from '../../../assets/images/buttonIcons/InfoSquare.svg';
+import logoutIcon from '../../../assets/images/buttonIcons/Logout.svg';
+
+import { logoutUser } from '../../../store/authSlice';
+import { clearStudentInfo } from '../../../store/studentSlice';
+import { clearSchedule } from '../../../store/scheduleSlice';
+import { persistor } from '../../../store';
 
 export const StudentNavButtons = () => {
   const dispatch = useDispatch();
@@ -19,6 +24,8 @@ export const StudentNavButtons = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(clearStudentInfo());
+    dispatch(clearSchedule());
     persistor.purge();
     navigate("/login");
   };

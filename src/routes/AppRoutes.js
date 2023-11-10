@@ -11,6 +11,7 @@ import { Statistic } from '../Pages/Statistic';
 import { ClassAttendance } from '../Pages/ClassAttendance';
 import { UserManual } from '../Pages/UserManual';
 import { ClassDebts } from '../Pages/ClassDebts';
+import { TeacherWeekSchedule } from '../Pages/Schedule/TeacherWeekSchedule/TeacherWeekSchedule';
 
 export const AppRoutes = ({isAuthenticated, roles}) => {
   const [userRoleNumber, setUserRoleNumber] = useState(null);
@@ -50,9 +51,9 @@ export const AppRoutes = ({isAuthenticated, roles}) => {
         <>
           <Route path="/" element={<Layout role={userRoleNumber}/>}>
             <Route index element={<TeacherProfile/>}/>
-            <Route path="/schedule" element={<TeacherSchedule/>}/>
+            <Route path="/schedule" element={<TeacherWeekSchedule/>}/>
             <Route path="/manual" element={<UserManual/>}/>
-            <Route path="*" element={<Navigate to="/teacher" replace={true}/>}/>
+            <Route path="*" element={<Navigate to="/" replace={true}/>}/>
           </Route>
         </>
       )}

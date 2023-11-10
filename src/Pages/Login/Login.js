@@ -8,6 +8,7 @@ import { Spinner } from '../../components/Spinner';
 import { ErrorModal } from '../../components/ErrorMessage/ErrorModal';
 
 import { userLogin } from '../../store/authSlice';
+
 import './style.css';
 
 export const Login = () => {

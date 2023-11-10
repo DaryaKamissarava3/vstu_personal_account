@@ -8,6 +8,7 @@ import { scheduleReducer } from './scheduleSlice';
 import { weekNumberReducer } from './weekNumberSlice';
 import { weekNameReducer } from './weekNameSlice';
 import { authReducer } from './authSlice';
+import { studentReducer } from './studentSlice';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +17,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  student:studentReducer,
   schedule: scheduleReducer,
   weekNumber: weekNumberReducer,
   weekName: weekNameReducer,

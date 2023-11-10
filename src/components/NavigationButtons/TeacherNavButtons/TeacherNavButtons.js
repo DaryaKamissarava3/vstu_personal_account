@@ -1,13 +1,16 @@
 import React from 'react';
-import {NavigationButton} from "../NavigationButton";
-import userIcon from "../../../assets/images/buttonIcons/User.svg";
-import calendarIcon from "../../../assets/images/buttonIcons/Calendar.svg";
-import userManualIcon from "../../../assets/images/buttonIcons/InfoSquare.svg";
-import logoutIcon from "../../../assets/images/buttonIcons/Logout.svg";
-import {useDispatch} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {logoutUser} from "../../../store/authSlice";
-import {persistor} from "../../../store";
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { logoutUser } from '../../../store/authSlice';
+import { persistor } from '../../../store';
+
+import { NavigationButton } from '../NavigationButton';
+
+import userIcon from '../../../assets/images/buttonIcons/User.svg';
+import calendarIcon from '../../../assets/images/buttonIcons/Calendar.svg';
+import userManualIcon from '../../../assets/images/buttonIcons/InfoSquare.svg';
+import logoutIcon from '../../../assets/images/buttonIcons/Logout.svg';
 
 export const TeacherNavButtons = () => {
   const dispatch = useDispatch();

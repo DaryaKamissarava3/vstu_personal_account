@@ -19,7 +19,8 @@ export const StudentSchedule = () => {
   const currentWeekNumber = useSelector((state) => state.weekNumber.weekNumber);
   const currentWeekName = useSelector((state) => state.weekName.weekName);
   const {studentsScheduleStatus, studentsScheduleError} = useSelector((state) => state.schedule);
-  
+  const studentGroup=useSelector((state)=>state.student.studentInfo.group.name)
+
   const [currentWeekDay, setCurrentWeekDay] = useState(getCurrentDayOfWeek());
 
   const [weekDay, setWeekDay] = useState(currentWeekDay);
@@ -27,10 +28,10 @@ export const StudentSchedule = () => {
   const [weekNumber, setWeekNumber] = useState(currentWeekNumber);
 
   useEffect(() => {
-    dispatch(fetchStudentsSchedule("Ит-10"));
+    dispatch(fetchStudentsSchedule(studentGroup));
     dispatch(fetchWeekNumber());
     dispatch(fetchWeekName());
-  }, [dispatch]);
+  }, [dispatch,studentGroup]);
 
   return (
     <>

@@ -2,6 +2,8 @@ export const tableHeaderForStudents = ['Пара', 'Время', '', 'Дисци
 
 export const tableHeaderForTeacher = ['Пара', 'Время', '', 'Дисциплина', '', 'Аудитория', 'Группа'];
 
+export const tableHeaderForWeek = ['Пара', 'День', 'Время', '', 'Дисциплина', '', 'Аудитория', 'Группа'];
+
 export const lessonAbbreviations = [
   {typeClassName: 'Лекция', abbreviation: 'ЛК'},
   {typeClassName: 'Лабораторная работа', abbreviation: 'ЛР'},
